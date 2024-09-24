@@ -1,0 +1,50 @@
+Áreas de mejora:
+Hay algunas oportunidades para reutilizar más el código, 
+    especialmente al manejar la base de datos. Por ejemplo, 
+    el engine de base de datos se crea varias veces y podrías 
+    aprovechar  de forma correcta el potencial de los modelos 
+    de sqlalchemy para hacer consultas y guardar cambios.
+
+Parece que intentaste implementar un caché para las soluciones 
+    encontradas, pero siempre recalculas la solución antes de
+    verificar si ya está en la base de datos.
+
+Pytest se ejecuta dentro del contenedor, en lugar del main del 
+    programa principal.
+
+Sería útil agregar un README.md con instrucciones claras de
+    instalación, ejecución, etc. de tu solución.
+
+El archivo requirements.txt incluye algunos paquetes innecesarios,
+    como los de testing. Considera separarlos en un archivo
+    requirements-tests.txt.
+
+La estructura del proyecto podría organizarse un poco mejor 
+    para mejorar la claridad. Por ejemplo, separar código 
+    de algoritmo del código de manejo de BD.
+
+Se versionan algunos directorios o archivos que no son necesarios
+    en el repositorio, como env y src/postgres_data.
+
+Algunos nombres de variables y funciones podrían ser más 
+    descriptivos, por ejemplo, i, j, p.
+
+Hay algunos comentarios que no aportan mucho a la comprensión 
+    del código.
+
+El archivo docker-compose solo corre el servicio de PostgreSQL.
+    Idealmente, también debería incluir el contenedor del algoritmo
+    para evitar usar host.docker.internal.
+
+Los tests no son completamente independientes; parece que 
+    test_queen_n depende de que test_initialization se 
+    ejecute primero.
+
+Se incluye gcc en la imagen de Docker, lo cual no es 
+    necesario y contradice el uso de una imagen slim. 
+    Se deben eliminar paquetes innecesarios.
+
+Nos gustaría ver que tus unit tests se ejecuten cada vez que 
+    haces push a tu repositorio y que su ejecución sea exitosa.
+    Vemos que solo crea una imágen de docker y la sube a tu
+    registro pero no podemos descargarla ni ejecutarla.
